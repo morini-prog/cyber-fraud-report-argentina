@@ -68,7 +68,8 @@ if gh api "/repos/$GITHUB_USER/$REPO_NAME/pages" >/dev/null 2>&1; then
 else
     # Habilitar Pages
     gh api -X POST "/repos/$GITHUB_USER/$REPO_NAME/pages" \
-        -f source='{"branch":"main","path":"/"}' >/dev/null
+        -f "source[branch]=main" \
+        -f "source[path]=/" >/dev/null
     echo "GitHub Pages habilitado exitosamente."
 fi
 
