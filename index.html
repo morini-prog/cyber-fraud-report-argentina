@@ -1,0 +1,1209 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informe: Estafas Virtuales con IA Generativa en Argentina (2025-2026)</title>
+    <meta name="description" content="Análisis exhaustivo sobre el impacto, modalidades, infraestructura técnica, vectores de ataque y marco legal de las estafas virtuales con IA generativa en Argentina (2025-2026).">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Mermaid.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <script>
+        // Configuración de Tailwind CSS para adaptarlo al tema Cyber Threat Intelligence y Académico
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        cyber: {
+                            bg: '#0f172a',
+                            card: '#1e293b',
+                            cyan: '#06b6d4',
+                            rose: '#f43f5e',
+                            emerald: '#10b981',
+                            amber: '#f59e0b',
+                            purple: '#a855f7'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* Estilos personalizados para efectos de brillo, transiciones de scroll y personalización de barra */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a;
+            color: #f8fafc;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        
+        .glow-cyan:hover {
+            box-shadow: 0 0 15px rgba(6, 182, 212, 0.4);
+            border-color: rgba(6, 182, 212, 0.6);
+        }
+        
+        .glow-rose:hover {
+            box-shadow: 0 0 15px rgba(244, 63, 94, 0.4);
+            border-color: rgba(244, 63, 94, 0.6);
+        }
+        
+        .glow-emerald:hover {
+            box-shadow: 0 0 15px rgba(16, 185, 129, 0.4);
+            border-color: rgba(16, 185, 129, 0.6);
+        }
+        
+        /* Ocultar barra de scroll en navegadores */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #06b6d4;
+        }
+
+        /* Soporte para el tema académico de lectura clara (Modo Claro) */
+        body.light-theme {
+            background-color: #f8fafc;
+            color: #0f172a;
+        }
+        body.light-theme .cyber-card {
+            background-color: #ffffff;
+            border-color: #e2e8f0;
+            color: #1e293b;
+        }
+        body.light-theme .text-slate-400 {
+            color: #64748b;
+        }
+        body.light-theme .text-slate-300 {
+            color: #334155;
+        }
+        body.light-theme .bg-slate-900\/80 {
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+        body.light-theme .border-slate-800 {
+            border-color: #e2e8f0;
+        }
+        body.light-theme .bg-slate-800 {
+            background-color: #f1f5f9;
+        }
+        body.light-theme .bg-slate-950 {
+            background-color: #e2e8f0;
+        }
+    </style>
+</head>
+<body class="antialiased overflow-x-hidden">
+
+    <!-- NAVBAR FIXED -->
+    <header class="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-slate-900/80 border-b border-slate-800 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo -->
+                <div class="flex items-center space-x-3">
+                    <div class="p-2 bg-cyan-950/50 border border-cyan-500/30 rounded-lg">
+                        <i data-lucide="shield-alert" class="w-6 h-6 text-cyber-cyan animate-pulse"></i>
+                    </div>
+                    <div>
+                        <span class="font-bold text-lg tracking-wider text-slate-100 hidden sm:inline-block header-title">AR-GENIA</span>
+                        <span class="text-xs block text-cyber-cyan font-mono tracking-widest uppercase">CTI Report 2026</span>
+                    </div>
+                </div>
+
+                <!-- Desktop Navigation Links -->
+                <nav class="hidden lg:flex space-x-6 text-sm font-medium">
+                    <a href="#hero" class="text-slate-300 hover:text-cyber-cyan transition">Inicio</a>
+                    <a href="#resumen" class="text-slate-300 hover:text-cyber-cyan transition">Resumen</a>
+                    <a href="#modalidades" class="text-slate-300 hover:text-cyber-cyan transition">Modalidades</a>
+                    <a href="#iocs" class="text-slate-300 hover:text-cyber-cyan transition">IOCs & TTPs</a>
+                    <a href="#riesgo" class="text-slate-300 hover:text-cyber-cyan transition">Riesgos</a>
+                    <a href="#mapa" class="text-slate-300 hover:text-cyber-cyan transition">Mapa</a>
+                    <a href="#comparativa" class="text-slate-300 hover:text-cyber-cyan transition">Comparativa</a>
+                    <a href="#recomendaciones" class="text-slate-300 hover:text-cyber-cyan transition">Medidas</a>
+                </nav>
+
+                <!-- Actions / Controls -->
+                <div class="flex items-center space-x-4">
+                    <!-- Theme Toggle -->
+                    <button id="themeToggleBtn" class="p-2 bg-slate-800 border border-slate-700 hover:border-cyber-cyan rounded-lg text-slate-300 hover:text-cyber-cyan transition focus:outline-none" title="Cambiar Tema">
+                        <i id="themeIcon" data-lucide="sun" class="w-5 h-5"></i>
+                    </button>
+                    <!-- Mobile Menu Button -->
+                    <button id="mobileMenuBtn" class="lg:hidden p-2 bg-slate-800 border border-slate-700 rounded-lg text-slate-300 transition focus:outline-none">
+                        <i data-lucide="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobileMenu" class="hidden lg:hidden bg-slate-900 border-b border-slate-800 px-4 pt-2 pb-4 space-y-2">
+            <a href="#hero" class="block py-2 px-3 rounded-md text-slate-300 hover:bg-slate-800 hover:text-cyber-cyan transition">Inicio</a>
+            <a href="#resumen" class="block py-2 px-3 rounded-md text-slate-300 hover:bg-slate-800 hover:text-cyber-cyan transition">Resumen</a>
+            <a href="#modalidades" class="block py-2 px-3 rounded-md text-slate-300 hover:bg-slate-800 hover:text-cyber-cyan transition">Modalidades</a>
+            <a href="#iocs" class="block py-2 px-3 rounded-md text-slate-300 hover:bg-slate-800 hover:text-cyber-cyan transition">IOCs & TTPs</a>
+            <a href="#riesgo" class="block py-2 px-3 rounded-md text-slate-300 hover:bg-slate-800 hover:text-cyber-cyan transition">Riesgos</a>
+            <a href="#mapa" class="block py-2 px-3 rounded-md text-slate-300 hover:bg-slate-800 hover:text-cyber-cyan transition">Mapa</a>
+            <a href="#comparativa" class="block py-2 px-3 rounded-md text-slate-300 hover:bg-slate-800 hover:text-cyber-cyan transition">Comparativa</a>
+            <a href="#recomendaciones" class="block py-2 px-3 rounded-md text-slate-300 hover:bg-slate-800 hover:text-cyber-cyan transition">Medidas</a>
+        </div>
+    </header>
+
+    <!-- HERO SECTION & IMPACT METRICS -->
+    <section id="hero" class="pt-32 pb-20 relative overflow-hidden bg-slate-950/20">
+        <!-- Background Grid Effect -->
+        <div class="absolute inset-0 opacity-[0.05] bg-[linear-gradient(to_right,#808080_1px,transparent_1px),linear-gradient(to_bottom,#808080_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none"></div>
+        <div class="absolute w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl -top-12 -left-12 pointer-events-none"></div>
+        <div class="absolute w-96 h-96 bg-rose-500/10 rounded-full blur-3xl -bottom-12 -right-12 pointer-events-none"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-4xl mx-auto mb-16">
+                <!-- Academic Badge -->
+                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-cyan-950/60 border border-cyber-cyan/30 text-cyber-cyan mb-6 tracking-wide uppercase font-mono">
+                    <i data-lucide="book-open" class="w-3.5 h-3.5 mr-1.5"></i> Informe Académico Especializado
+                </span>
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white mb-6 leading-tight">
+                    Estafas Virtuales con <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyber-cyan via-blue-400 to-indigo-400">IA Generativa</span> en Argentina
+                </h1>
+                <p class="text-lg sm:text-xl text-slate-400 max-w-3xl mx-auto">
+                    Análisis sistemático de nuevos vectores de amenaza cibernética, taxonomía delictiva local, indicadores forenses y directrices de protección (Periodo 2025-2026).
+                </p>
+            </div>
+
+            <!-- Metrics Cards Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Card 1 (Cyan) -->
+                <div class="cyber-card bg-slate-800/80 border border-slate-700/80 rounded-2xl p-8 glow-cyan transition-all duration-300 relative group overflow-hidden bg-slate-800">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-cyan-500/5 rounded-bl-full pointer-events-none transition-all group-hover:bg-cyan-500/10"></div>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-xs font-semibold uppercase tracking-wider text-slate-400 font-mono">Denuncias Anuales</span>
+                        <div class="p-2 bg-cyan-950/40 rounded-lg text-cyber-cyan text-cyan-400">
+                            <i data-lucide="file-warning" class="w-5 h-5"></i>
+                        </div>
+                    </div>
+                    <div class="text-4xl sm:text-5xl font-black text-white mb-2 tracking-tight">+34.000</div>
+                    <p class="text-sm text-slate-400">
+                        Denuncias de fraudes digitales registradas anualmente en el país (Fuente: <span class="text-cyber-cyan font-semibold text-cyan-400">UFECI 2024</span>).
+                    </p>
+                </div>
+
+                <!-- Card 2 (Rose) -->
+                <div class="cyber-card bg-slate-800/80 border border-slate-700/80 rounded-2xl p-8 glow-rose transition-all duration-300 relative group overflow-hidden bg-slate-800">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-rose-500/5 rounded-bl-full pointer-events-none transition-all group-hover:bg-rose-500/10"></div>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-xs font-semibold uppercase tracking-wider text-slate-400 font-mono">Tasa de Afectación</span>
+                        <div class="p-2 bg-rose-950/40 rounded-lg text-cyber-rose text-rose-400">
+                            <i data-lucide="users" class="w-5 h-5"></i>
+                        </div>
+                    </div>
+                    <div class="text-4xl sm:text-5xl font-black text-white mb-2 tracking-tight">43%</div>
+                    <p class="text-sm text-slate-400">
+                        De usuarios locales de internet reportaron incidentes o estafas directas durante el bienio <span class="text-cyber-rose font-semibold text-rose-400">2025-2026</span> (Fuente: <span class="text-cyber-rose font-semibold text-rose-400">CertiSur</span>).
+                    </p>
+                </div>
+
+                <!-- Card 3 (Emerald) -->
+                <div class="cyber-card bg-slate-800/80 border border-slate-700/80 rounded-2xl p-8 glow-emerald transition-all duration-300 relative group overflow-hidden bg-slate-800">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-emerald-500/5 rounded-bl-full pointer-events-none transition-all group-hover:bg-emerald-500/10"></div>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-xs font-semibold uppercase tracking-wider text-slate-400 font-mono">Tendencia Global</span>
+                        <div class="p-2 bg-emerald-950/40 rounded-lg text-cyber-emerald text-emerald-450">
+                            <i data-lucide="trending-up" class="w-5 h-5"></i>
+                        </div>
+                    </div>
+                    <div class="text-4xl sm:text-5xl font-black text-white mb-2 tracking-tight">+1.210%</div>
+                    <p class="text-sm text-slate-400">
+                        Incremento exponencial a nivel mundial en el uso de herramientas sintéticas de inteligencia artificial para ciberestafas.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RESUMEN EJECUTIVO Y METODOLOGÍA -->
+    <section id="resumen" class="py-20 border-t border-slate-800/60 bg-slate-900/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center space-x-2 text-cyber-cyan text-cyan-400 font-mono text-xs uppercase tracking-widest mb-3">
+                <i data-lucide="binary" class="w-4 h-4"></i>
+                <span>Sección 02 / Marco Metodológico</span>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+                <div class="lg:col-span-7">
+                    <h2 class="text-3xl font-extrabold text-white tracking-tight mb-6">
+                        Resumen Ejecutivo
+                    </h2>
+                    <div class="space-y-4 text-slate-300 leading-relaxed text-justify">
+                        <p>
+                            El avance sin precedentes de la <strong>Inteligencia Artificial Generativa (IAGen)</strong> ha modificado de raíz las metodologías de fraude en Argentina. Los vectores tradicionales de ingeniería social, basados en la manipulación psicológica mediante textos simples o llamadas frías, han evolucionado hacia sofisticadas operaciones sintéticas capaces de replicar a la perfección la identidad humana.
+                        </p>
+                        <p>
+                            Entre los años 2025 y 2026, el país experimentó una profesionalización de las bandas locales, las cuales comenzaron a consumir herramientas de IA "llave en mano" (Modelos de Lenguaje Avanzados sin restricciones de seguridad, clones de voz hiperrealistas y generadores de video sintético). Esta democratización tecnológica redujo a cero las barreras de entrada para actores maliciosos, acelerando la escala y efectividad del cibercrimen en el territorio nacional.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-5 cyber-card bg-slate-800/50 border border-slate-700/60 rounded-2xl p-8 relative bg-slate-800">
+                    <div class="absolute -top-3 right-6 bg-slate-900 text-cyber-cyan border border-cyber-cyan/30 px-3 py-1 rounded text-xs font-mono font-bold text-cyan-400">
+                        METODOLOGÍA DE RECOPILACIÓN
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-4 flex items-center">
+                        <i data-lucide="database" class="w-5 h-5 mr-2 text-cyber-cyan text-cyan-450"></i>
+                        Triangulación de Fuentes
+                    </h3>
+                    <p class="text-slate-300 text-sm leading-relaxed mb-4 text-justify">
+                        Los hallazgos de este reporte resultan de un esfuerzo de triangulación cualitativa y cuantitativa de múltiples bases informativas:
+                    </p>
+                    <ul class="space-y-3 text-sm text-slate-400">
+                        <li class="flex items-start">
+                            <i data-lucide="check-circle" class="w-4 h-4 text-cyber-cyan text-cyan-400 mr-2 mt-0.5"></i>
+                            <span><strong>Judiciales / Gubernamentales</strong>: Datos de la Unidad Fiscal Especializada en Ciberdelincuencia (UFECI) y el Ministerio Público Fiscal de la Nación (MPF).</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i data-lucide="check-circle" class="w-4 h-4 text-cyber-cyan text-cyan-400 mr-2 mt-0.5"></i>
+                            <span><strong>Investigaciones Corporativas</strong>: Informes de seguridad en el ámbito bancario de CertiSur, ESET América Latina y Veridas.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i data-lucide="check-circle" class="w-4 h-4 text-cyber-cyan text-cyan-400 mr-2 mt-0.5"></i>
+                            <span><strong>Ciberperiodismo Forense</strong>: Investigaciones analíticas de fact-checking en español como Factchequeado.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MODALIDADES DE ESTAFA (GRID INTERACTIVO) -->
+    <section id="modalidades" class="py-20 border-t border-slate-800/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between mb-12">
+                <div>
+                    <div class="flex items-center space-x-2 text-cyber-cyan text-cyan-400 font-mono text-xs uppercase tracking-widest mb-3">
+                        <i data-lucide="blocks" class="w-4 h-4"></i>
+                        <span>Sección 03 / Tipos de Amenazas</span>
+                    </div>
+                    <h2 class="text-3xl font-extrabold text-white tracking-tight">
+                        Modalidades de Estafa con IA
+                    </h2>
+                </div>
+                <span class="text-slate-400 text-xs font-mono hidden md:inline-block">Selecciona una tarjeta para ver el informe forense completo</span>
+            </div>
+
+            <!-- Interactive Grid of 5 Main Modalities -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Modality 1: Phishing y Suplantación / BEC -->
+                <div class="cyber-card bg-slate-800/60 border border-slate-700/80 rounded-2xl p-6 transition-all duration-300 hover:-translate-y-2 hover:border-cyan-500/40 flex flex-col justify-between bg-slate-800">
+                    <div>
+                        <div class="p-3 bg-cyan-950/40 text-cyber-cyan text-cyan-400 rounded-xl w-fit mb-5">
+                            <i data-lucide="mail-open" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Phishing Generativo y BEC</h3>
+                        <p class="text-sm text-slate-400 leading-relaxed mb-6">
+                            Utilización de Grandes Modelos de Lenguaje (LLMs) modificados para redactar correos de suplantación corporativa hiperrealistas, sin errores ortográficos y con léxico local exacto.
+                        </p>
+                    </div>
+                    <button onclick="openModalityModal('phishing')" class="w-full py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-xs font-semibold text-slate-300 hover:text-cyber-cyan hover:border-cyber-cyan transition-all flex items-center justify-center">
+                        <i data-lucide="eye" class="w-4 h-4 mr-1.5"></i> Analizar IoCs y Caso
+                    </button>
+                </div>
+
+                <!-- Modality 2: Clonación de Voz (Vishing) -->
+                <div class="cyber-card bg-slate-800/60 border border-slate-700/80 rounded-2xl p-6 transition-all duration-300 hover:-translate-y-2 hover:border-cyan-500/40 flex flex-col justify-between bg-slate-800">
+                    <div>
+                        <div class="p-3 bg-cyan-950/40 text-cyber-cyan text-cyan-400 rounded-xl w-fit mb-5">
+                            <i data-lucide="mic" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Clonación de Voz (Vishing)</h3>
+                        <p class="text-sm text-slate-400 leading-relaxed mb-6">
+                            Modelos Text-to-Speech (TTS) que replican el timbre y prosodia de familiares o directivos usando clips de audio de 3 a 5 segundos robados de redes sociales. Esquema clásico "Hey Mom".
+                        </p>
+                    </div>
+                    <button onclick="openModalityModal('vishing')" class="w-full py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-xs font-semibold text-slate-300 hover:text-cyber-cyan hover:border-cyber-cyan transition-all flex items-center justify-center">
+                        <i data-lucide="eye" class="w-4 h-4 mr-1.5"></i> Analizar IoCs y Caso
+                    </button>
+                </div>
+
+                <!-- Modality 3: Deepfakes Audiovisuales -->
+                <div class="cyber-card bg-slate-800/60 border border-slate-700/80 rounded-2xl p-6 transition-all duration-300 hover:-translate-y-2 hover:border-cyan-500/40 flex flex-col justify-between bg-slate-800">
+                    <div>
+                        <div class="p-3 bg-cyan-950/40 text-cyber-cyan text-cyan-400 rounded-xl w-fit mb-5">
+                            <i data-lucide="video" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Deepfakes y Extorsión</h3>
+                        <p class="text-sm text-slate-400 leading-relaxed mb-6">
+                            Generación de rostros en videollamadas o manipulación de audios y videos corporativos/íntimos para presionar extorsiones de sumas elevadas de dinero en pesos o criptoactivos.
+                        </p>
+                    </div>
+                    <button onclick="openModalityModal('deepfakes')" class="w-full py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-xs font-semibold text-slate-300 hover:text-cyber-cyan hover:border-cyber-cyan transition-all flex items-center justify-center">
+                        <i data-lucide="eye" class="w-4 h-4 mr-1.5"></i> Analizar IoCs y Caso
+                    </button>
+                </div>
+
+                <!-- Modality 4: Romance Scams -->
+                <div class="cyber-card bg-slate-800/60 border border-slate-700/80 rounded-2xl p-6 transition-all duration-300 hover:-translate-y-2 hover:border-cyan-500/40 flex flex-col justify-between bg-slate-800">
+                    <div>
+                        <div class="p-3 bg-cyan-950/40 text-cyber-cyan text-cyan-400 rounded-xl w-fit mb-5">
+                            <i data-lucide="heart" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Romance Scams Sintéticos</h3>
+                        <p class="text-sm text-slate-400 leading-relaxed mb-6">
+                            Creación de avatares sintéticos y bots autónomos conversacionales en aplicaciones de citas para entablar relaciones simuladas y eventualmente sustraer ahorros de vida.
+                        </p>
+                    </div>
+                    <button onclick="openModalityModal('romance')" class="w-full py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-xs font-semibold text-slate-300 hover:text-cyber-cyan hover:border-cyber-cyan transition-all flex items-center justify-center">
+                        <i data-lucide="eye" class="w-4 h-4 mr-1.5"></i> Analizar IoCs y Caso
+                    </button>
+                </div>
+
+                <!-- Modality 5: Pig Butchering / Criptomonedas -->
+                <div class="cyber-card bg-slate-800/60 border border-slate-700/80 rounded-2xl p-6 transition-all duration-300 hover:-translate-y-2 hover:border-cyan-500/40 flex flex-col justify-between bg-slate-800">
+                    <div>
+                        <div class="p-3 bg-cyan-950/40 text-cyber-cyan text-cyan-400 rounded-xl w-fit mb-5">
+                            <i data-lucide="coins" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Inversión y Pig Butchering</h3>
+                        <p class="text-sm text-slate-400 leading-relaxed mb-6">
+                            Esquemas transnacionales donde interfaces creadas con IA simulan plataformas de trading de criptomonedas. Los usuarios son guiados paso a paso mediante asesores sintéticos.
+                        </p>
+                    </div>
+                    <button onclick="openModalityModal('pigbutchering')" class="w-full py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-xs font-semibold text-slate-300 hover:text-cyber-cyan hover:border-cyber-cyan transition-all flex items-center justify-center">
+                        <i data-lucide="eye" class="w-4 h-4 mr-1.5"></i> Analizar IoCs y Caso
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DETALLES DE MODALIDAD MODAL (BACKDROP DYNAMIC MODAL) -->
+    <div id="modalityModal" class="fixed inset-0 z-50 hidden bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="cyber-card bg-slate-800 border border-slate-700 w-full max-w-2xl rounded-2xl overflow-hidden relative shadow-2xl transition-all scale-95 duration-300">
+            <!-- Modal Header -->
+            <div class="p-6 border-b border-slate-700 flex justify-between items-center bg-slate-900/50">
+                <div class="flex items-center space-x-3">
+                    <div id="modalIconContainer" class="p-2 bg-cyan-950/40 text-cyber-cyan text-cyan-400 rounded-lg">
+                        <!-- Dynamic Icon -->
+                    </div>
+                    <h3 id="modalTitle" class="text-xl font-bold text-white">Detalle de la Modalidad</h3>
+                </div>
+                <button onclick="closeModalityModal()" class="text-slate-400 hover:text-white transition">
+                    <i data-lucide="x" class="w-6 h-6"></i>
+                </button>
+            </div>
+            <!-- Modal Content -->
+            <div class="p-6 space-y-6 max-h-[70vh] overflow-y-auto">
+                <div>
+                    <h4 class="text-xs uppercase tracking-wider text-slate-400 font-mono mb-2">Modus Operandi</h4>
+                    <p id="modalModusOperandi" class="text-slate-300 text-sm leading-relaxed"></p>
+                </div>
+                <div>
+                    <h4 class="text-xs uppercase tracking-wider text-slate-400 font-mono mb-2">Indicadores de Compromiso (IoCs)</h4>
+                    <ul id="modalIocsList" class="list-disc list-inside space-y-1 text-slate-300 text-sm"></ul>
+                </div>
+                <div class="p-4 bg-rose-950/20 border border-rose-500/20 rounded-xl">
+                    <h4 class="text-xs uppercase tracking-wider text-cyber-rose text-rose-500 font-mono mb-2 flex items-center">
+                        <i data-lucide="alert-triangle" class="w-4 h-4 mr-1"></i> Caso Registrado en Argentina
+                    </h4>
+                    <p id="modalCaseArgentina" class="text-slate-300 text-sm leading-relaxed font-semibold"></p>
+                </div>
+                <div>
+                    <h4 class="text-xs uppercase tracking-wider text-cyber-emerald text-emerald-500 font-mono mb-2">Medidas de Mitigación</h4>
+                    <p id="modalMitigation" class="text-slate-300 text-sm leading-relaxed"></p>
+                </div>
+            </div>
+            <!-- Modal Footer -->
+            <div class="p-4 border-t border-slate-700 bg-slate-900/50 flex justify-end">
+                <button onclick="closeModalityModal()" class="px-5 py-2 bg-slate-700 hover:bg-slate-600 text-white text-xs font-semibold rounded-lg transition">
+                    Cerrar Análisis
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- INDICADORES TÉCNICOS E INFRAESTRUCTURA (TABS INTERACTIVOS) -->
+    <section id="iocs" class="py-20 border-t border-slate-800/60 bg-slate-900/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center space-x-2 text-cyber-cyan text-cyan-400 font-mono text-xs uppercase tracking-widest mb-3">
+                <i data-lucide="cpu" class="w-4 h-4"></i>
+                <span>Sección 04 / Inteligencia Operativa</span>
+            </div>
+            <h2 class="text-3xl font-extrabold text-white tracking-tight mb-8">
+                Infraestructura y Artefactos Forenses (IOCs & TTPs)
+            </h2>
+
+            <!-- Tabs Navigation -->
+            <div class="flex flex-wrap border-b border-slate-700 mb-8 gap-2">
+                <button onclick="switchTab('ttps')" id="tabBtn-ttps" class="tab-btn px-5 py-3 text-sm font-semibold border-b-2 border-cyber-cyan text-cyber-cyan text-cyan-400 hover:text-white transition-all flex items-center">
+                    <i data-lucide="settings" class="w-4 h-4 mr-2"></i> TTPs de Ataque
+                </button>
+                <button onclick="switchTab('plataformas')" id="tabBtn-plataformas" class="tab-btn px-5 py-3 text-sm font-semibold border-b-2 border-transparent text-slate-400 hover:text-white transition-all flex items-center">
+                    <i data-lucide="share-2" class="w-4 h-4 mr-2"></i> Plataformas Involucradas
+                </button>
+                <button onclick="switchTab('herramientas')" id="tabBtn-herramientas" class="tab-btn px-5 py-3 text-sm font-semibold border-b-2 border-transparent text-slate-400 hover:text-white transition-all flex items-center">
+                    <i data-lucide="wrench" class="w-4 h-4 mr-2"></i> Herramientas de IA
+                </button>
+                <button onclick="switchTab('forense')" id="tabBtn-forense" class="tab-btn px-5 py-3 text-sm font-semibold border-b-2 border-transparent text-slate-400 hover:text-white transition-all flex items-center">
+                    <i data-lucide="microscope" class="w-4 h-4 mr-2"></i> Artefactos Forenses
+                </button>
+            </div>
+
+            <!-- Tabs Content Panels -->
+            <div class="cyber-card bg-slate-800/40 border border-slate-700/80 rounded-2xl p-8 min-h-[300px] bg-slate-800">
+                
+                <!-- Panel 1: TTPs -->
+                <div id="tabPanel-ttps" class="tab-panel space-y-6">
+                    <h3 class="text-xl font-bold text-white flex items-center">
+                        Tácticas, Técnicas y Procedimientos (TTPs)
+                    </h3>
+                    <p class="text-slate-300 text-sm leading-relaxed">
+                        Análisis sistemático de las fases de ejecución del ciberfraude basado en la matriz MITRE ATT&CK adaptada a Inteligencia Artificial Generativa:
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="p-5 bg-slate-900/60 border border-slate-750 rounded-xl bg-slate-900">
+                            <span class="text-xs font-bold text-cyber-cyan text-cyan-400 font-mono block mb-2">Tactic 01: Reconocimiento</span>
+                            <p class="text-xs text-slate-400">Extracción de muestras biométricas (voz y rostro) públicas en redes como Instagram, TikTok y LinkedIn para alimentar modelos.</p>
+                        </div>
+                        <div class="p-5 bg-slate-900/60 border border-slate-750 rounded-xl bg-slate-900">
+                            <span class="text-xs font-bold text-cyber-cyan text-cyan-400 font-mono block mb-2">Tactic 02: Armado / Preparación</span>
+                            <p class="text-xs text-slate-400">Entrenamiento rápido de modelos de clonación (TTS) y sintonización de Large Language Models (LLMs) sin restricciones éticas.</p>
+                        </div>
+                        <div class="p-5 bg-slate-900/60 border border-slate-750 rounded-xl bg-slate-900">
+                            <span class="text-xs font-bold text-cyber-cyan text-cyan-400 font-mono block mb-2">Tactic 03: Ejecución</span>
+                            <p class="text-xs text-slate-400">Inyección de payloads biométricos a través de videollamadas con software tipo virtual-cam o inyección de archivos de audio sintetizados.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Panel 2: Plataformas -->
+                <div id="tabPanel-plataformas" class="tab-panel hidden space-y-6">
+                    <h3 class="text-xl font-bold text-white">Canales y Plataformas Utilizados</h3>
+                    <p class="text-slate-300 text-sm leading-relaxed">
+                        Los ciberdelincuentes utilizan plataformas legítimas con fines de orquestación, distribución e intercambio financiero, complicando el rastreo judicial:
+                    </p>
+                    <div class="space-y-4">
+                        <div class="flex items-center space-x-4 p-4 bg-slate-900/40 border border-slate-800 rounded-xl bg-slate-900">
+                            <div class="p-3 bg-green-950/40 text-emerald-400 rounded-lg">
+                                <i data-lucide="message-square" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white text-sm">WhatsApp & Telegram (Ingeniería Social & Automatización)</h4>
+                                <p class="text-xs text-slate-400">Utilizados para el envío automatizado de audios clonados e interacciones de phishing a través de cuentas previamente hackeadas.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-4 p-4 bg-slate-900/40 border border-slate-800 rounded-xl bg-slate-900">
+                            <div class="p-3 bg-amber-950/40 text-amber-400 rounded-lg">
+                                <i data-lucide="wallet" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white text-sm">Binance, Lemon Cash y Fiwind (Blanqueo de Activos)</h4>
+                                <p class="text-xs text-slate-400">Uso de identidades falsas (sintéticas) en exchanges locales y globales para transferir y convertir de inmediato pesos argentinos a Stablecoins (USDT).</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Panel 3: Herramientas -->
+                <div id="tabPanel-herramientas" class="tab-panel hidden space-y-6">
+                    <h3 class="text-xl font-bold text-white">Herramientas y Modelos de IA</h3>
+                    <p class="text-slate-300 text-sm leading-relaxed">
+                        Listado de tecnologías comúnmente explotadas por los ciberdelincuentes según forenses de incidentes en Argentina:
+                    </p>
+                    <table class="w-full text-left text-xs border-collapse">
+                        <thead>
+                            <tr class="border-b border-slate-700 text-slate-400 uppercase tracking-wider font-mono">
+                                <th class="py-3 px-4">Herramienta / Framework</th>
+                                <th class="py-3 px-4">Uso Delictivo Principal</th>
+                                <th class="py-3 px-4">Complejidad / Costo</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-800 text-slate-300">
+                            <tr>
+                                <td class="py-3 px-4 font-semibold text-white">ElevenLabs / XTTS</td>
+                                <td class="py-3 px-4">Clonación de voz hiperrealista para secuestro virtual y estafas bancarias.</td>
+                                <td class="py-3 px-4 text-cyber-cyan text-cyan-400 font-mono font-semibold">Bajo Costo / Alta Complejidad</td>
+                            </tr>
+                            <tr>
+                                <td class="py-3 px-4 font-semibold text-white">ChatGPT / WormGPT</td>
+                                <td class="py-3 px-4">Redacción de correos BEC y bots conversacionales persuasivos.</td>
+                                <td class="py-3 px-4 text-cyber-emerald text-emerald-500 font-mono font-semibold">Gratuito / Baja Complejidad</td>
+                            </tr>
+                            <tr>
+                                <td class="py-3 px-4 font-semibold text-white">Stable Diffusion / Roop</td>
+                                <td class="py-3 px-4">Generación de documentación e identidades sintéticas para eludir KYC bancario.</td>
+                                <td class="py-3 px-4 text-cyber-rose text-rose-500 font-mono font-semibold">Open Source / Requiere GPU dedicada</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Panel 4: Forense -->
+                <div id="tabPanel-forense" class="tab-panel hidden space-y-6">
+                    <h3 class="text-xl font-bold text-white">Artefactos Forenses y Huellas Biométricas</h3>
+                    <p class="text-slate-300 text-sm leading-relaxed">
+                        Anomalías estructurales típicas que permiten la identificación científica de contenidos sintéticos maliciosos:
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs text-slate-300">
+                        <div class="p-4 bg-slate-900/40 border border-slate-800 rounded-xl space-y-2 bg-slate-900">
+                            <h4 class="font-bold text-white flex items-center">
+                                <i data-lucide="eye" class="w-4 h-4 mr-1 text-cyber-cyan text-cyan-400"></i> Anomalías Visuales (Video)
+                            </h4>
+                            <p class="text-slate-400">Ausencia de parpadeo natural, distorsión en la unión de la oreja con el mentón, artefactos cromáticos en contornos capilares e inconsistencias de sombras internas en la boca durante el habla.</p>
+                        </div>
+                        <div class="p-4 bg-slate-900/40 border border-slate-800 rounded-xl space-y-2 bg-slate-900">
+                            <h4 class="font-bold text-white flex items-center">
+                                <i data-lucide="radio" class="w-4 h-4 mr-1 text-cyber-cyan text-cyan-400"></i> Anomalías de Audio (Voz)
+                            </h4>
+                            <p class="text-slate-400">Corte abrupto en los ruidos de respiración, ausencia de inflexión tonal ante exclamaciones de pánico, y firma de metadatos ausente en los envíos de mensajería (generalmente transcodificados).</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- EVALUACIÓN DE RIESGO POR SECTOR -->
+    <section id="riesgo" class="py-20 border-t border-slate-800/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center space-x-2 text-cyber-cyan text-cyan-400 font-mono text-xs uppercase tracking-widest mb-3">
+                <i data-lucide="trending-up" class="w-4 h-4"></i>
+                <span>Sección 05 / Gestión de Amenazas</span>
+            </div>
+            <h2 class="text-3xl font-extrabold text-white tracking-tight mb-12">
+                Evaluación y Matriz de Riesgo por Sector
+            </h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-5 gap-6">
+                <!-- Ciudadanos (Muy Alto) -->
+                <div class="cyber-card bg-slate-800/60 border border-slate-700/80 rounded-xl p-6 relative group overflow-hidden md:col-span-2 bg-slate-800">
+                    <span class="absolute top-4 right-4 px-2 py-0.5 rounded text-[10px] font-mono font-extrabold bg-rose-500/20 text-cyber-rose text-rose-400 border border-rose-500/30">
+                        RIESGO: MUY ALTO
+                    </span>
+                    <h3 class="text-lg font-bold text-white mb-2 mt-4 flex items-center">
+                        <i data-lucide="user" class="w-5 h-5 text-cyber-rose text-rose-400 mr-2"></i> Ciudadanos / Familias
+                    </h3>
+                    <p class="text-xs text-slate-400 leading-relaxed mb-4">
+                        Sector altamente vulnerable ante ataques de clonación de voz (secuestros virtuales) y romance scams. La falta de capacitación previa y la manipulación emocional elevan exponencialmente el éxito de la extorsión.
+                    </p>
+                    <div class="text-[10px] font-mono text-slate-500">
+                        Impacto estimado: Pérdidas patrimoniales críticas y daño psicológico severo.
+                    </div>
+                </div>
+
+                <!-- Banca (Muy Alto) -->
+                <div class="cyber-card bg-slate-800/60 border border-slate-700/80 rounded-xl p-6 relative group overflow-hidden md:col-span-3 bg-slate-800">
+                    <span class="absolute top-4 right-4 px-2 py-0.5 rounded text-[10px] font-mono font-extrabold bg-rose-500/20 text-cyber-rose text-rose-400 border border-rose-500/30">
+                        RIESGO: MUY ALTO
+                    </span>
+                    <h3 class="text-lg font-bold text-white mb-2 mt-4 flex items-center">
+                        <i data-lucide="landmark" class="w-5 h-5 text-cyber-rose text-rose-400 mr-2"></i> Entidades Financieras
+                    </h3>
+                    <p class="text-xs text-slate-400 leading-relaxed mb-4">
+                        Blanco de elusión de KYC mediante Deepfakes. Los ciberdelincuentes crean rostros sintéticos en tiempo real para engañar las validaciones biométricas y abrir cuentas "mula" para desvío de transacciones.
+                    </p>
+                    <div class="text-[10px] font-mono text-slate-500">
+                        Impacto estimado: Pérdida de reputación, multas regulatorias y aumento de costos transaccionales.
+                    </div>
+                </div>
+
+                <!-- PYMEs (Alto) -->
+                <div class="cyber-card bg-slate-800/60 border border-slate-700/80 rounded-xl p-6 relative group overflow-hidden md:col-span-2 bg-slate-800">
+                    <span class="absolute top-4 right-4 px-2 py-0.5 rounded text-[10px] font-mono font-extrabold bg-amber-500/20 text-cyber-amber text-amber-500 border border-amber-500/30">
+                        RIESGO: ALTO
+                    </span>
+                    <h3 class="text-lg font-bold text-white mb-2 mt-4 flex items-center">
+                        <i data-lucide="briefcase" class="w-5 h-5 text-cyber-amber text-amber-500 mr-2"></i> Pequeñas y Medianas Empresas (PYMEs)
+                    </h3>
+                    <p class="text-xs text-slate-400 leading-relaxed mb-4">
+                        Afectadas por fraudes tipo Business Email Compromise (BEC) potenciados con IAGen. Falta de procedimientos robustos de doble factor para transferencias bancarias.
+                    </p>
+                    <div class="text-[10px] font-mono text-slate-500">
+                        Impacto estimado: Desvío de pagos a proveedores y brechas de información crítica.
+                    </div>
+                </div>
+
+                <!-- Gobierno (Moderado) -->
+                <div class="cyber-card bg-slate-800/60 border border-slate-700/80 rounded-xl p-6 relative group overflow-hidden md:col-span-1.5 bg-slate-800">
+                    <span class="absolute top-4 right-4 px-2 py-0.5 rounded text-[10px] font-mono font-extrabold bg-blue-500/20 text-blue-400 border border-blue-500/30">
+                        RIESGO: MODERADO
+                    </span>
+                    <h3 class="text-base font-bold text-white mb-2 mt-4 flex items-center">
+                        <i data-lucide="building" class="w-5 h-5 text-blue-400 mr-2"></i> Instituciones Públicas
+                    </h3>
+                    <p class="text-xs text-slate-400 leading-relaxed mb-4">
+                        Afectadas por campañas de desinformación masiva mediante videos sintéticos y suplantación de funcionarios.
+                    </p>
+                </div>
+
+                <!-- Salud (Bajo) -->
+                <div class="cyber-card bg-slate-800/60 border border-slate-700/80 rounded-xl p-6 relative group overflow-hidden md:col-span-1.5 bg-slate-800">
+                    <span class="absolute top-4 right-4 px-2 py-0.5 rounded text-[10px] font-mono font-extrabold bg-green-500/20 text-cyber-emerald text-emerald-500 border border-green-500/30">
+                        RIESGO: BAJO
+                    </span>
+                    <h3 class="text-base font-bold text-white mb-2 mt-4 flex items-center">
+                        <i data-lucide="activity" class="w-5 h-5 text-cyber-emerald text-emerald-500 mr-2"></i> Sector Salud
+                    </h3>
+                    <p class="text-xs text-slate-400 leading-relaxed mb-4">
+                        Vulneración indirecta mediante suplantación de recetas médicas virtuales generadas por bots inteligentes.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MAPA DE ACTORES (DIAGRAMA MERMAID) -->
+    <section id="mapa" class="py-20 border-t border-slate-800/60 bg-slate-900/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center space-x-2 text-cyber-cyan text-cyan-400 font-mono text-xs uppercase tracking-widest mb-3">
+                <i data-lucide="git-branch" class="w-4 h-4"></i>
+                <span>Sección 06 / Flujo Operacional</span>
+            </div>
+            <h2 class="text-3xl font-extrabold text-white tracking-tight mb-4">
+                Mapa del Flujo y Actores del Cibercrimen
+            </h2>
+            <p class="text-sm text-slate-400 max-w-3xl mb-12">
+                Esquema metodológico que detalla el camino de una estafa virtual moderna con IA, desde la obtención de insumos delictivos hasta el lavado y estructuración financiera por bandas transnacionales.
+            </p>
+
+            <div class="p-8 bg-slate-950 border border-slate-850 rounded-2xl flex justify-center overflow-x-auto">
+                <div class="mermaid min-w-[700px] text-center">
+                    graph LR
+                        classDef actor fill:#1e293b,stroke:#06b6d4,stroke-width:2px,color:#f8fafc;
+                        classDef infra fill:#1e293b,stroke:#a855f7,stroke-width:2px,color:#f8fafc;
+                        classDef mode fill:#1e293b,stroke:#f43f5e,stroke-width:2px,color:#f8fafc;
+                        classDef target fill:#1e293b,stroke:#10b981,stroke-width:2px,color:#f8fafc;
+                        classDef endState fill:#1e293b,stroke:#eab308,stroke-width:2px,color:#f8fafc;
+
+                        CR[Criminales / Atacantes]:::actor --> IA[Herramientas IA & Plataformas]:::infra
+                        IA --> MO[Modalidades de Estafa]:::mode
+                        MO --> VI[Víctimas / Sectores]:::target
+                        VI --> ORG[Crimen Organizado Transnacional]:::endState
+
+                        style CR fill:#1e293b,stroke:#06b6d4,stroke-width:2px,stroke-dasharray: 5 5;
+                        style ORG fill:#1e293b,stroke:#eab308,stroke-width:2px;
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MATRIZ COMPARATIVA (TABLA INTERACTIVA) -->
+    <section id="comparativa" class="py-20 border-t border-slate-800/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center space-x-2 text-cyber-cyan text-cyan-400 font-mono text-xs uppercase tracking-widest mb-3">
+                <i data-lucide="table" class="w-4 h-4"></i>
+                <span>Sección 07 / Análisis Sistémico</span>
+            </div>
+            <h2 class="text-3xl font-extrabold text-white tracking-tight mb-8">
+                Matriz Comparativa de Modalidades (8 Analizadas)
+            </h2>
+
+            <!-- Live Search & Filters -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                <!-- Search -->
+                <div class="relative">
+                    <input type="text" id="searchBar" onkeyup="filterMatrixTable()" placeholder="Buscar por modalidad o palabra clave..." class="w-full pl-10 pr-4 py-3 bg-slate-800 border border-slate-700 rounded-xl text-slate-100 text-sm focus:outline-none focus:border-cyber-cyan focus:border-cyan-500 transition-colors">
+                    <div class="absolute left-3.5 top-3.5 text-slate-500">
+                        <i data-lucide="search" class="w-4 h-4"></i>
+                    </div>
+                </div>
+
+                <!-- Risk Filter -->
+                <div>
+                    <select id="riskFilter" onchange="filterMatrixTable()" class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-xl text-slate-100 text-sm focus:outline-none focus:border-cyber-cyan focus:border-cyan-500 transition-colors">
+                        <option value="ALL">Nivel de Riesgo (Todos)</option>
+                        <option value="MUY ALTO">Muy Alto</option>
+                        <option value="ALTO">Alto</option>
+                        <option value="MODERADO">Moderado</option>
+                        <option value="BAJO">Bajo</option>
+                    </select>
+                </div>
+
+                <!-- AI Complexity Filter -->
+                <div>
+                    <select id="complexityFilter" onchange="filterMatrixTable()" class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-xl text-slate-100 text-sm focus:outline-none focus:border-cyber-cyan focus:border-cyan-500 transition-colors">
+                        <option value="ALL">Nivel de IA (Todos)</option>
+                        <option value="AVANZADO">Avanzado</option>
+                        <option value="INTERMEDIO">Intermedio</option>
+                        <option value="BÁSICO">Básico</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Table Container -->
+            <div class="cyber-card bg-slate-800/40 border border-slate-700/80 rounded-2xl overflow-hidden overflow-x-auto bg-slate-850">
+                <table class="w-full text-left text-xs border-collapse" id="matrixTable">
+                    <thead>
+                        <tr class="bg-slate-900/60 border-b border-slate-700 text-slate-400 uppercase tracking-wider font-mono">
+                            <th class="py-4 px-6">ID</th>
+                            <th class="py-4 px-6">Modalidad</th>
+                            <th class="py-4 px-6">Tecnología de IA</th>
+                            <th class="py-4 px-6">Complejidad IA</th>
+                            <th class="py-4 px-6">Nivel de Riesgo</th>
+                            <th class="py-4 px-6">Canal Principal</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-800 text-slate-300" id="matrixTableBody">
+                        <!-- Row 1 -->
+                        <tr class="table-row hover:bg-slate-750 transition-colors" data-risk="ALTO" data-complexity="INTERMEDIO">
+                            <td class="py-4 px-6 font-mono text-cyber-cyan text-cyan-400 font-bold">EST-01</td>
+                            <td class="py-4 px-6 font-semibold text-white">Phishing Generativo y BEC</td>
+                            <td class="py-4 px-6">LLMs (ChatGPT/WormGPT)</td>
+                            <td class="py-4 px-6"><span class="px-2 py-0.5 rounded bg-blue-500/10 text-blue-400 font-semibold font-mono">INTERMEDIO</span></td>
+                            <td class="py-4 px-6"><span class="px-2 py-0.5 rounded bg-amber-500/10 text-cyber-amber text-amber-500 font-semibold font-mono">ALTO</span></td>
+                            <td class="py-4 px-6">Correo Corporativo / WhatsApp</td>
+                        </tr>
+                        <!-- Row 2 -->
+                        <tr class="table-row hover:bg-slate-750 transition-colors" data-risk="MUY ALTO" data-complexity="AVANZADO">
+                            <td class="py-4 px-6 font-mono text-cyber-cyan text-cyan-400 font-bold">EST-02</td>
+                            <td class="py-4 px-6 font-semibold text-white">Clonación de Voz (Vishing)</td>
+                            <td class="py-4 px-6">TTS (XTTS/ElevenLabs)</td>
+                            <td class="py-4 px-6"><span class="px-2 py-0.5 rounded bg-purple-500/10 text-cyber-purple text-purple-400 font-semibold font-mono">AVANZADO</span></td>
+                            <td class="py-4 px-6"><span class="px-2 py-0.5 rounded bg-rose-500/10 text-cyber-rose text-rose-400 font-semibold font-mono">MUY ALTO</span></td>
+                            <td class="py-4 px-6">Llamadas Celulares / WhatsApp</td>
+                        </tr>
+                        <!-- Row 3 -->
+                        <tr class="table-row hover:bg-slate-750 transition-colors" data-risk="MUY ALTO" data-complexity="AVANZADO">
+                            <td class="py-4 px-6 font-mono text-cyber-cyan text-cyan-400 font-bold">EST-03</td>
+                            <td class="py-4 px-6 font-semibold text-white">Deepfakes y Extorsión</td>
+                            <td class="py-4 px-6">Video Synthetics (Roop/Sora)</td>
+                            <td class="py-4 px-6"><span class="px-2 py-0.5 rounded bg-purple-500/10 text-cyber-purple text-purple-400 font-semibold font-mono">AVANZADO</span></td>
+                            <td class="py-4 px-6"><span class="px-2 py-0.5 rounded bg-rose-500/10 text-cyber-rose text-rose-400 font-semibold font-mono">MUY ALTO</span></td>
+                            <td class="py-4 px-6">Videollamadas / Telegram</td>
+                        </tr>
+                        <!-- Row 4 -->
+                        <tr class="table-row hover:bg-slate-750 transition-colors" data-risk="MODERADO" data-complexity="INTERMEDIO">
+                            <td class="py-4 px-6 font-mono text-cyber-cyan text-cyan-400 font-bold">EST-04</td>
+                            <td class="py-4 px-6 font-semibold text-white">Romance Scams Sintéticos</td>
+                            <td class="py-4 px-6">Generación Rostros + LLMs</td>
+                            <td class="py-4 px-6"><span class="px-2 py-0.5 rounded bg-blue-500/10 text-blue-400 font-semibold font-mono">INTERMEDIO</span></td>
+                            <td class="py-4 px-6"><span class="px-2 py-0.5 rounded bg-blue-500/10 text-blue-400 font-semibold font-mono">MODERADO</span></td>
+                            <td class="py-4 px-6">Apps de Citas / Instagram</td>
+                        </tr>
+                        <!-- Row 5 -->
+                        <tr class="table-row hover:bg-slate-750 transition-colors" data-risk="ALTO" data-complexity="INTERMEDIO">
+                            <td class="py-4 px-6 font-mono text-cyber-cyan text-cyan-400 font-bold">EST-05</td>
+                            <td class="py-4 px-6 font-semibold text-white">Inversión y Pig Butchering</td>
+                            <td class="py-4 px-6">Deepfakes + Falsos Brokers</td>
+                            <td class="py-4 px-6"><span class="px-2 py-0.5 rounded bg-blue-500/10 text-blue-400 font-semibold font-mono">INTERMEDIO</span></td>
+                            <td class="py-4 px-6"><span class="px-2 py-0.5 rounded bg-amber-500/10 text-cyber-amber text-amber-500 font-semibold font-mono">ALTO</span></td>
+                            <td class="py-4 px-6">Redes Sociales / Crypto Exchanges</td>
+                        </tr>
+                        <!-- Row 6 -->
+                        <tr class="table-row hover:bg-slate-750 transition-colors" data-risk="MUY ALTO" data-complexity="AVANZADO">
+                            <td class="py-4 px-6 font-mono text-cyber-cyan text-cyan-400 font-bold">EST-06</td>
+                            <td class="py-4 px-6 font-semibold text-white">Elusión de KYC Bancario</td>
+                            <td class="py-4 px-6">Real-Time Face Swap (Roop)</td>
+                            <td class="py-4 px-6"><span class="px-2 py-0.5 rounded bg-purple-500/10 text-cyber-purple text-purple-400 font-semibold font-mono">AVANZADO</span></td>
+                            <td class="py-4 px-6"><span class="px-2 py-0.5 rounded bg-rose-500/10 text-cyber-rose text-rose-400 font-semibold font-mono">MUY ALTO</span></td>
+                            <td class="py-4 px-6">Apps Bancarias de Onboarding</td>
+                        </tr>
+                        <!-- Row 7 -->
+                        <tr class="table-row hover:bg-slate-750 transition-colors" data-risk="MODERADO" data-complexity="BÁSICO">
+                            <td class="py-4 px-6 font-mono text-cyber-cyan text-cyan-400 font-bold">EST-07</td>
+                            <td class="py-4 px-6 font-semibold text-white">Soporte Técnico Sintético</td>
+                            <td class="py-4 px-6">Voice Bots Autónomos</td>
+                            <td class="py-4 px-6"><span class="px-2 py-0.5 rounded bg-green-500/10 text-cyber-emerald text-emerald-500 font-semibold font-mono">BÁSICO</span></td>
+                            <td class="py-4 px-6"><span class="px-2 py-0.5 rounded bg-blue-500/10 text-blue-400 font-semibold font-mono">MODERADO</span></td>
+                            <td class="py-4 px-6">Telefonía IP VoIP</td>
+                        </tr>
+                        <!-- Row 8 -->
+                        <tr class="table-row hover:bg-slate-750 transition-colors" data-risk="BAJO" data-complexity="BÁSICO">
+                            <td class="py-4 px-6 font-mono text-cyber-cyan text-cyan-400 font-bold">EST-08</td>
+                            <td class="py-4 px-6 font-semibold text-white">Malware Impulsado por IA</td>
+                            <td class="py-4 px-6">Adware Generado Automáticamente</td>
+                            <td class="py-4 px-6"><span class="px-2 py-0.5 rounded bg-green-500/10 text-cyber-emerald text-emerald-500 font-semibold font-mono">BÁSICO</span></td>
+                            <td class="py-4 px-6"><span class="px-2 py-0.5 rounded bg-green-500/10 text-cyber-emerald text-emerald-500 font-semibold font-mono">BAJO</span></td>
+                            <td class="py-4 px-6">Descargas en Portales Truchos</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div id="noResults" class="hidden p-8 text-center text-slate-500 text-sm">
+                    No se encontraron modalidades que coincidan con los filtros aplicados.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RECOMENDACIONES Y MARCO LEGAL (ACORDEONES) -->
+    <section id="recomendaciones" class="py-20 border-t border-slate-800/60 bg-slate-900/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center space-x-2 text-cyber-cyan text-cyan-400 font-mono text-xs uppercase tracking-widest mb-3">
+                <i data-lucide="landmark" class="w-4 h-4"></i>
+                <span>Sección 08 / Líneas de Defensa</span>
+            </div>
+            <h2 class="text-3xl font-extrabold text-white tracking-tight mb-12">
+                Recomendaciones Técnicas y Marco Legal
+            </h2>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- Recommendations Accordion -->
+                <div>
+                    <h3 class="text-xl font-bold text-white mb-6 flex items-center">
+                        <i data-lucide="shield-check" class="w-6 h-6 mr-2 text-cyber-emerald text-emerald-500"></i>
+                        Directrices Técnicas de Defensa
+                    </h3>
+                    <div class="space-y-4">
+                        <!-- Acc Item 1 -->
+                        <div class="border border-slate-700 bg-slate-800/40 rounded-xl overflow-hidden bg-slate-800">
+                            <button onclick="toggleAccordion('rec1')" class="w-full p-4 text-left font-semibold text-white flex justify-between items-center hover:bg-slate-750 transition-colors">
+                                <span class="text-sm">1. Establecimiento de Contraseñas Familiares</span>
+                                <i id="accIcon-rec1" data-lucide="chevron-down" class="w-4 h-4 text-slate-400 transition-transform"></i>
+                            </button>
+                            <div id="accBody-rec1" class="hidden p-4 bg-slate-900/30 text-xs text-slate-300 border-t border-slate-700 leading-relaxed space-y-2 bg-slate-900">
+                                <p>Frente al auge de la clonación de voz, se aconseja fijar un término secreto o código familiar verbal que no pueda ser deducido mediante análisis de redes sociales. Ante cualquier llamada inusual reclamando emergencias, solicitar esta palabra de validación.</p>
+                            </div>
+                        </div>
+
+                        <!-- Acc Item 2 -->
+                        <div class="border border-slate-700 bg-slate-800/40 rounded-xl overflow-hidden bg-slate-800">
+                            <button onclick="toggleAccordion('rec2')" class="w-full p-4 text-left font-semibold text-white flex justify-between items-center hover:bg-slate-750 transition-colors">
+                                <span class="text-sm">2. Doble Factor Biométrico Fuera de Banda</span>
+                                <i id="accIcon-rec2" data-lucide="chevron-down" class="w-4 h-4 text-slate-400 transition-transform"></i>
+                            </button>
+                            <div id="accBody-rec2" class="hidden p-4 bg-slate-900/30 text-xs text-slate-300 border-t border-slate-700 leading-relaxed bg-slate-900">
+                                <p>Para corporaciones y directivos expuestos a fraudes BEC, toda autorización de pagos bancarios por encima de cierto umbral debe requerir confirmación por un canal de telefonía encriptado alternativo y autenticación multifactor física (FIDO2 Keys) en vez de biometría simple.</p>
+                            </div>
+                        </div>
+
+                        <!-- Acc Item 3 -->
+                        <div class="border border-slate-700 bg-slate-800/40 rounded-xl overflow-hidden bg-slate-800">
+                            <button onclick="toggleAccordion('rec3')" class="w-full p-4 text-left font-semibold text-white flex justify-between items-center hover:bg-slate-750 transition-colors">
+                                <span class="text-sm">3. Preservación de Evidencia Digital Forense</span>
+                                <i id="accIcon-rec3" data-lucide="chevron-down" class="w-4 h-4 text-slate-400 transition-transform"></i>
+                            </button>
+                            <div id="accBody-rec3" class="hidden p-4 bg-slate-900/30 text-xs text-slate-300 border-t border-slate-700 leading-relaxed bg-slate-900">
+                                <p>Ante sospecha de fraude, no borrar los archivos de audio o capturas de video recibidas. Es vital congelar los metadatos de las llamadas o mensajes utilizando hashes criptográficos y realizar capturas certificadas en blockchain para su presentación como evidencia judicial ante la UFECI.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Legal Accordion -->
+                <div>
+                    <h3 class="text-xl font-bold text-white mb-6 flex items-center">
+                        <i data-lucide="gavel" class="w-6 h-6 mr-2 text-cyber-cyan text-cyan-400"></i>
+                        Marco Normativo & Ley 27.388
+                    </h3>
+                    <div class="space-y-4">
+                        <!-- Acc Item 4 -->
+                        <div class="border border-slate-700 bg-slate-800/40 rounded-xl overflow-hidden bg-slate-800">
+                            <button onclick="toggleAccordion('leg1')" class="w-full p-4 text-left font-semibold text-white flex justify-between items-center hover:bg-slate-750 transition-colors">
+                                <span class="text-sm">Evolución de la Ley de Delitos Informáticos</span>
+                                <i id="accIcon-leg1" data-lucide="chevron-down" class="w-4 h-4 text-slate-400 transition-transform"></i>
+                            </button>
+                            <div id="accBody-leg1" class="hidden p-4 bg-slate-900/30 text-xs text-slate-300 border-t border-slate-700 leading-relaxed bg-slate-900">
+                                <p>La Ley 27.388 (incorporada al Código Penal de la Nación) penaliza la estafa informática, el daño y el acceso ilegítimo. Sin embargo, la tipificación del uso de "identidad sintética" e "IA suplantadora" representa un vacío legal actual. Los jueces aplican de forma complementaria el art. 172 (Estafa Genérica por ardid o engaño).</p>
+                            </div>
+                        </div>
+
+                        <!-- Acc Item 5 -->
+                        <div class="border border-slate-700 bg-slate-800/40 rounded-xl overflow-hidden bg-slate-800">
+                            <button onclick="toggleAccordion('leg2')" class="w-full p-4 text-left font-semibold text-white flex justify-between items-center hover:bg-slate-750 transition-colors">
+                                <span class="text-sm">Convenio de Budapest en Argentina</span>
+                                <i id="accIcon-leg2" data-lucide="chevron-down" class="w-4 h-4 text-slate-400 transition-transform"></i>
+                            </button>
+                            <div id="accBody-leg2" class="hidden p-4 bg-slate-900/30 text-xs text-slate-300 border-t border-slate-700 leading-relaxed bg-slate-900">
+                                <p>Argentina, al ser estado adherente del Convenio sobre Ciberdelincuencia del Consejo de Europa (Budapest), cuenta con mecanismos simplificados de asistencia judicial internacional para el congelamiento rápido de datos y el rastreo de transacciones crypto fuera del territorio nacional.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-950 py-12 border-t border-slate-850 text-slate-400 text-sm transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <h4 class="font-bold text-white text-base mb-3 flex items-center">
+                        <i data-lucide="shield" class="w-5 h-5 text-cyber-cyan text-cyan-400 mr-2"></i>
+                        AR-GENIA Cyber Report
+                    </h4>
+                    <p class="text-xs text-slate-500 leading-relaxed">
+                        Iniciativa independiente de análisis forense y amenazas cibernéticas potenciadas por algoritmos generativos. Reporte de código abierto.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white text-base mb-3">Fuentes de Datos Oficiales</h4>
+                    <ul class="space-y-2 text-xs font-mono">
+                        <li><a href="https://www.mpf.gob.ar/ufeci/" target="_blank" rel="noopener noreferrer" class="hover:text-cyber-cyan text-cyan-400 transition">UFECI - Ministerio Público Fiscal</a></li>
+                        <li><a href="https://www.certisur.com/" target="_blank" rel="noopener noreferrer" class="hover:text-cyber-cyan text-cyan-400 transition">CertiSur Security Reports</a></li>
+                        <li><a href="https://www.eset.com/ar/" target="_blank" rel="noopener noreferrer" class="hover:text-cyber-cyan text-cyan-400 transition">ESET Latinoamérica Research</a></li>
+                        <li><a href="https://veridas.com/es/" target="_blank" rel="noopener noreferrer" class="hover:text-cyber-cyan text-cyan-400 transition">Veridas Identity Verification</a></li>
+                        <li><a href="https://factchequeado.com/" target="_blank" rel="noopener noreferrer" class="hover:text-cyber-cyan text-cyan-400 transition">Factchequeado Ciberseguridad</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white text-base mb-3">Identificadores del Informe</h4>
+                    <ul class="space-y-1 text-xs font-mono">
+                        <li>Documento ID: <span class="text-white font-semibold">AGY-CTI-2026-AR-09</span></li>
+                        <li>Estado: <span class="text-cyber-emerald text-emerald-500 font-bold">PUBLICADO (Versión 1.2)</span></li>
+                        <li>Fecha de Carga: <span class="text-slate-300">Julio 2026</span></li>
+                        <li>Área: Threat Intelligence Argentina</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-slate-900 pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-600">
+                <p>&copy; 2026 AR-GENIA Team. Licenciado bajo Creative Commons BY-NC 4.0.</p>
+                <div class="flex space-x-4 mt-4 sm:mt-0">
+                    <span class="hover:text-slate-400 cursor-pointer">Términos de Uso</span>
+                    <span class="hover:text-slate-400 cursor-pointer">Políticas Forenses</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE SCRIPTS -->
+    <script>
+        // Inicializar iconos de Lucide
+        lucide.createIcons();
+        
+        // Inicializar Mermaid.js
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'dark',
+            securityLevel: 'loose'
+        });
+
+        // Toggle del Menú Mobile
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Cerrar menú mobile al hacer click en un link
+        document.querySelectorAll('#mobileMenu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Toggle de Temas (CTI Cyber Dark vs. Academic Light)
+        const themeToggleBtn = document.getElementById('themeToggleBtn');
+        const themeIcon = document.getElementById('themeIcon');
+        const body = document.body;
+
+        themeToggleBtn.addEventListener('click', () => {
+            body.classList.toggle('light-theme');
+            const isLight = body.classList.contains('light-theme');
+            
+            // Actualizar icono de Lucide dinámicamente
+            if (isLight) {
+                themeIcon.setAttribute('data-lucide', 'moon');
+                themeToggleBtn.setAttribute('title', 'Modo Oscuro Cyber');
+            } else {
+                themeIcon.setAttribute('data-lucide', 'sun');
+                themeToggleBtn.setAttribute('title', 'Modo Claro Académico');
+            }
+            lucide.createIcons();
+        });
+
+        // Base de Datos de las 5 Modalidades del Grid para el Modal Dinámico
+        const modalitiesData = {
+            phishing: {
+                title: "Phishing Generativo y BEC (Business Email Compromise)",
+                icon: "mail-open",
+                modusOperandi: "Los atacantes entrenan LLMs modificados (como WormGPT) con miles de correos comerciales reales. La IA produce correos personalizados impecables imitando la jerga, modismos internos y tono exacto del gerente general o de un proveedor habitual. Se elimina cualquier error gramatical típico que permitía identificar phishing tradicional.",
+                iocs: [
+                    "Buzones de envío con dominios homógrafos (.co en lugar de .com.ar).",
+                    "Ausencia de firmas PGP corporativas que antes eran por defecto.",
+                    "Léxico comercial extremadamente calibrado pero remitido a deshoras (automatización nocturna).",
+                    "Presión injustificada sobre canales informales directos (ej. pases por WhatsApp)."
+                ],
+                caseArgentina: "Mayo 2025: Una importante agroexportadora de Santa Fe transfirió $12 millones de pesos a una cuenta recaudadora mula tras recibir instrucciones de facturación rectificadas. El correo imitaba fielmente el tono, firmas y estilo de su proveedor principal de logística, generado en segundos con IA generativa.",
+                mitigation: "Exigir validación multifactorial criptográfica obligatoria para todo cambio de cuenta receptora de transferencias. Implementar rigurosamente registros DMARC, DKIM y SPF."
+            },
+            vishing: {
+                title: "Clonación de Voz (Vishing / Esquema 'Hey Mom')",
+                icon: "mic",
+                modusOperandi: "Utilizando software Text-to-Speech (TTS) avanzado, los estafadores necesitan solo un clip de voz de 3 a 5 segundos de la víctima potencial (extraído de historias de Instagram o videos públicos). Con este insumo, escriben un guion de crisis y la IA lo procesa en tiempo real, replicando el tono y el timbre del familiar solicitando dinero de urgencia.",
+                iocs: [
+                    "Silencios antinaturales en la llamada mientras la IA procesa la respuesta textual (latencia de 1 a 2 segundos).",
+                    "Falta de entonación natural ante preguntas imprevistas (respuestas acartonadas).",
+                    "Ruidos metálicos residuales de fondo (artefactos de compresión del clonador).",
+                    "Negativa rotunda a realizar una videollamada para verificar identidad."
+                ],
+                caseArgentina: "Noviembre 2025: Un jubilado en Caballito (CABA) entregó USD 15.000 a supuestos intermediarios tras recibir una llamada telefónica donde escuchó con claridad absoluta la voz de su hija suplicando rescate por un presunto secuestro.",
+                mitigation: "Establecer una clave familiar acordada previamente. Frente a emergencias telefónicas de este tipo, cortar e intentar contactar al familiar directamente mediante canales alternativos o llamada convencional."
+            },
+            deepfakes: {
+                title: "Deepfakes Audiovisuales y Extorsión",
+                icon: "video",
+                modusOperandi: "Mediante el uso de herramientas de modelado facial en tiempo real (Roop o DeepFaceLive), los delincuentes suplantan rostros en videollamadas. El estafador simula ser un directivo bancario o una persona de confianza. En otros casos, generan montajes pornográficos/delictivos sintéticos (sextorsión) usando imágenes de perfil y exigen dinero para no viralizarlos.",
+                iocs: [
+                    "Bordes faciales borrosos o pixelados al girar el rostro frente a la cámara.",
+                    "Asimetría del color de ojos y dientes extrañamente uniformes o desenfocados.",
+                    "Sincronía labial defectuosa respecto al audio escuchado.",
+                    "Ausencia de parpadeo coordinado y movimientos de hombros robóticos."
+                ],
+                caseArgentina: "Abril 2026: Chantaje millonario de $5 millones de pesos a un reconocido abogado penalista de Córdoba. Los atacantes crearon un video sintético (Deepfake) que lo mostraba aceptando sobornos de una banda narco, exigiéndole la suma a cambio de no difundirlo en redes y medios locales.",
+                mitigation: "Instalar soluciones de detección biométrica de 'prueba de vida' en canales corporativos. No publicar videos de alta resolución de rostros de forma libre en redes sociales."
+            },
+            romance: {
+                title: "Romance Scams Sintéticos",
+                icon: "heart",
+                modusOperandi: "Los estafadores configuran perfiles falsos automatizados con bots conversacionales (LLMs con personalidad sintonizada) y fotos creadas por generadores de rostros (GANs). El bot interactúa las 24 horas del día con la víctima, construyendo un vínculo emocional sólido. Eventualmente, solicita ayudas económicas urgentes para viajes, tratamientos médicos o problemas aduaneros falsos.",
+                iocs: [
+                    "Incoherencia narrativa en conversaciones muy largas (pérdida de contexto del bot).",
+                    "Imposibilidad constante de realizar llamadas de voz o videollamadas reales.",
+                    "Fotos de perfil perfectas con iluminación de estudio pero fondos sospechosamente fondos planos.",
+                    "Solicitudes rápidas de dinero o inversiones en brokers desconocidos."
+                ],
+                caseArgentina: "Enero 2026: Una mujer de Mendoza transfirió cerca de $3.5 millones de pesos a un supuesto ingeniero naval radicado en Asia. Toda la interacción amorosa por chat y mensajes de audio de baja calidad fue orquestada de forma autónoma por un agente sintético.",
+                mitigation: "Realizar búsquedas inversas de imágenes de las fotos provistas. Nunca enviar dinero ni datos bancarios a personas conocidas exclusivamente por canales virtuales."
+            },
+            pigbutchering: {
+                title: "Inversión y Criptomonedas (Pig Butchering)",
+                icon: "coins",
+                modusOperandi: "Vectores transnacionales donde interfaces de trading ficticias son promocionadas a través de videos sintéticos de figuras públicas recomendando el servicio (ej. conductores de noticieros locales manipulados con IA). Los usuarios depositan dinero, ven ganancias simuladas digitalmente y cuando intentan retirar sus fondos, asesores (también generados artificialmente) les exigen pagos de supuestas tasas impositivas adicionales.",
+                iocs: [
+                    "Plataformas de inversión sin registros oficiales ante la Comisión Nacional de Valores (CNV).",
+                    "Publicidades web de famosos prometiendo ganancias desorbitadas donde el movimiento labial no coincide con la voz argentina de fondo.",
+                    "Obligatoriedad de transferir los fondos a billeteras criptográficas personales de extraños."
+                ],
+                caseArgentina: "Febrero 2026: Desarticulación de una red con nexos en el sudeste asiático que operaba en Buenos Aires, estafando a más de 300 ahorristas que ingresaron fondos en una plataforma sintética de alta rentabilidad usando videos falsos de empresarios locales.",
+                mitigation: "Verificar siempre los registros regulatorios de las entidades financieras en el sitio oficial de la CNV. Desconfiar sistemáticamente de promesas de rentabilidad garantizada."
+            }
+        };
+
+        // Lógica de Modales
+        const modalityModal = document.getElementById('modalityModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalModusOperandi = document.getElementById('modalModusOperandi');
+        const modalIocsList = document.getElementById('modalIocsList');
+        const modalCaseArgentina = document.getElementById('modalCaseArgentina');
+        const modalMitigation = document.getElementById('modalMitigation');
+        const modalIconContainer = document.getElementById('modalIconContainer');
+
+        function openModalityModal(key) {
+            const data = modalitiesData[key];
+            if (!data) return;
+
+            modalTitle.innerText = data.title;
+            modalModusOperandi.innerText = data.modusOperandi;
+            modalCaseArgentina.innerText = data.caseArgentina;
+            modalMitigation.innerText = data.mitigation;
+
+            // Renderizar IOCs
+            modalIocsList.innerHTML = '';
+            data.iocs.forEach(ioc => {
+                const li = document.createElement('li');
+                li.innerText = ioc;
+                modalIocsList.appendChild(li);
+            });
+
+            // Actualizar icono en el contenedor
+            modalIconContainer.innerHTML = `<i data-lucide="${data.icon}" class="w-6 h-6"></i>`;
+            lucide.createIcons();
+
+            // Mostrar el modal
+            modalityModal.classList.remove('hidden');
+            setTimeout(() => {
+                modalityModal.querySelector('.cyber-card').classList.remove('scale-95');
+                modalityModal.querySelector('.cyber-card').classList.add('scale-100');
+            }, 50);
+        }
+
+        function closeModalityModal() {
+            modalityModal.querySelector('.cyber-card').classList.remove('scale-100');
+            modalityModal.querySelector('.cyber-card').classList.add('scale-95');
+            setTimeout(() => {
+                modalityModal.classList.add('hidden');
+            }, 150);
+        }
+
+        // Cerrar modal al hacer click fuera
+        modalityModal.addEventListener('click', (e) => {
+            if (e.target === modalityModal) {
+                closeModalityModal();
+            }
+        });
+
+        // Lógica de Tabs Interactivos
+        function switchTab(tabId) {
+            // Ocultar todos los paneles
+            document.querySelectorAll('.tab-panel').forEach(panel => {
+                panel.classList.add('hidden');
+            });
+            // Remover estilos activos de todos los botones de tabs
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('border-cyber-cyan', 'text-cyber-cyan', 'text-cyan-400');
+                btn.classList.add('border-transparent', 'text-slate-400');
+            });
+
+            // Mostrar panel activo y asignar estilos
+            document.getElementById(`tabPanel-${tabId}`).classList.remove('hidden');
+            const activeBtn = document.getElementById(`tabBtn-${tabId}`);
+            activeBtn.classList.remove('border-transparent', 'text-slate-400');
+            activeBtn.classList.add('border-cyber-cyan', 'text-cyber-cyan', 'text-cyan-400');
+        }
+
+        // Lógica de Acordeones (Recomendaciones / Marco Legal)
+        function toggleAccordion(id) {
+            const body = document.getElementById(`accBody-${id}`);
+            const icon = document.getElementById(`accIcon-${id}`);
+
+            body.classList.toggle('hidden');
+            icon.classList.toggle('rotate-180');
+        }
+
+        // Lógica de Filtrado en Tiempo Real de la Matriz Comparativa (Tabla)
+        function filterMatrixTable() {
+            const query = document.getElementById('searchBar').value.toLowerCase();
+            const risk = document.getElementById('riskFilter').value;
+            const complexity = document.getElementById('complexityFilter').value;
+            const rows = document.querySelectorAll('#matrixTableBody .table-row');
+            let hasResults = false;
+
+            rows.forEach(row => {
+                const text = row.innerText.toLowerCase();
+                const rowRisk = row.getAttribute('data-risk');
+                const rowComplexity = row.getAttribute('data-complexity');
+
+                const matchesQuery = text.includes(query);
+                const matchesRisk = (risk === 'ALL' || rowRisk === risk);
+                const matchesComplexity = (complexity === 'ALL' || rowComplexity === complexity);
+
+                if (matchesQuery && matchesRisk && matchesComplexity) {
+                    row.classList.remove('hidden');
+                    hasResults = true;
+                } else {
+                    row.classList.add('hidden');
+                }
+            });
+
+            const noResults = document.getElementById('noResults');
+            if (hasResults) {
+                noResults.classList.add('hidden');
+            } else {
+                noResults.classList.remove('hidden');
+            }
+        }
+    </script>
+</body>
+</html>
