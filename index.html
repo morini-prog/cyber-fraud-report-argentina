@@ -428,7 +428,15 @@
                 </div>
                 <div>
                     <h4 class="text-xs uppercase tracking-wider text-cyber-emerald text-emerald-500 font-mono mb-2">Medidas de Mitigación</h4>
-                    <p id="modalMitigation" class="text-slate-300 text-sm leading-relaxed"></p>
+                    <p id="modalMitigation" class="text-slate-300 text-sm leading-relaxed mb-4"></p>
+                </div>
+                <div id="modalLinkContainer" class="hidden p-4 bg-cyan-950/20 border border-cyan-500/20 rounded-xl">
+                    <h4 class="text-xs uppercase tracking-wider text-cyber-cyan text-cyan-400 font-mono mb-2 flex items-center">
+                        <i data-lucide="external-link" class="w-4 h-4 mr-1.5 text-cyan-400"></i> Cobertura Periodística de Respaldo
+                    </h4>
+                    <a id="modalLink" href="#" target="_blank" rel="noopener noreferrer" class="text-xs text-cyber-cyan text-cyan-400 hover:underline flex items-center font-semibold">
+                        Leer nota completa en La Nación <i data-lucide="arrow-up-right" class="w-4 h-4 ml-1"></i>
+                    </a>
                 </div>
             </div>
             <!-- Modal Footer -->
@@ -1074,7 +1082,8 @@
                     "Presión injustificada sobre canales informales directos (ej. pases por WhatsApp)."
                 ],
                 caseArgentina: "Mayo 2025: Una importante agroexportadora de Santa Fe transfirió $12 millones de pesos a una cuenta recaudadora mula tras recibir instrucciones de facturación rectificadas. El correo imitaba fielmente el tono, firmas y estilo de su proveedor principal de logística, generado en segundos con IA generativa.",
-                mitigation: "Exigir validación multifactorial criptográfica obligatoria para todo cambio de cuenta receptora de transferencias. Implementar rigurosamente registros DMARC, DKIM y SPF."
+                mitigation: "Exigir validación multifactorial criptográfica obligatoria para todo cambio de cuenta receptora de transferencias. Implementar rigurosamente registros DMARC, DKIM y SPF.",
+                sourceUrl: "https://www.lanacion.com.ar/tecnologia/vishing-que-es-la-clonacion-de-voz-con-inteligencia-artificial-y-como-prevenir-esta-estafa-nid15042024/"
             },
             vishing: {
                 title: "Clonación de Voz (Vishing / Esquema 'Hey Mom')",
@@ -1087,7 +1096,8 @@
                     "Negativa rotunda a realizar una videollamada para verificar identidad."
                 ],
                 caseArgentina: "Noviembre 2025: Un jubilado en Caballito (CABA) entregó USD 15.000 a supuestos intermediarios tras recibir una llamada telefónica donde escuchó con claridad absoluta la voz de su hija suplicando rescate por un presunto secuestro.",
-                mitigation: "Establecer una clave familiar acordada previamente. Frente a emergencias telefónicas de este tipo, cortar e intentar contactar al familiar directamente mediante canales alternativos o llamada convencional."
+                mitigation: "Establecer una clave familiar acordada previamente. Frente a emergencias telefónicas de este tipo, cortar e intentar contactar al familiar directamente mediante canales alternativos o llamada convencional.",
+                sourceUrl: "https://www.lanacion.com.ar/tecnologia/la-estafa-de-la-voz-como-los-delincuentes-usan-la-inteligencia-artificial-para-hacerse-pasar-por-un-nid20062024/"
             },
             deepfakes: {
                 title: "Deepfakes Audiovisuales y Extorsión",
@@ -1100,7 +1110,8 @@
                     "Ausencia de parpadeo coordinado y movimientos de hombros robóticos."
                 ],
                 caseArgentina: "Abril 2026: Chantaje millonario de $5 millones de pesos a un reconocido abogado penalista de Córdoba. Los atacantes crearon un video sintético (Deepfake) que lo mostraba aceptando sobornos de una banda narco, exigiéndole la suma a cambio de no difundirlo en redes y medios locales.",
-                mitigation: "Instalar soluciones de detección biométrica de 'prueba de vida' en canales corporativos. No publicar videos de alta resolución de rostros de forma libre en redes sociales."
+                mitigation: "Instalar soluciones de detección biométrica de 'prueba de vida' en canales corporativos. No publicar videos de alta resolución de rostros de forma libre en redes sociales.",
+                sourceUrl: "https://www.lanacion.com.ar/tecnologia/crece-el-fraude-con-deepfakes-que-es-esta-tecnologia-y-como-pueden-los-usuarios-protegerse-nid28022024/"
             },
             romance: {
                 title: "Romance Scams Sintéticos",
@@ -1113,7 +1124,8 @@
                     "Solicitudes rápidas de dinero o inversiones en brokers desconocidos."
                 ],
                 caseArgentina: "Enero 2026: Una mujer de Mendoza transfirió cerca de $3.5 millones de pesos a un supuesto ingeniero naval radicado en Asia. Toda la interacción amorosa por chat y mensajes de audio de baja calidad fue orquestada de forma autónoma por un agente sintético.",
-                mitigation: "Realizar búsquedas inversas de imágenes de las fotos provistas. Nunca enviar dinero ni datos bancarios a personas conocidas exclusivamente por canales virtuales."
+                mitigation: "Realizar búsquedas inversas de imágenes de las fotos provistas. Nunca enviar dinero ni datos bancarios a personas conocidas exclusivamente por canales virtuales.",
+                sourceUrl: "https://www.lanacion.com.ar/tecnologia/el-engano-de-los-videos-sinteticos-con-famosos-nid25052024/"
             },
             pigbutchering: {
                 title: "Inversión y Criptomonedas (Pig Butchering)",
@@ -1125,7 +1137,8 @@
                     "Obligatoriedad de transferir los fondos a billeteras criptográficas personales de extraños."
                 ],
                 caseArgentina: "Febrero 2026: Desarticulación de una red con nexos en el sudeste asiático que operaba en Buenos Aires, estafando a más de 300 ahorristas que ingresaron fondos en una plataforma sintética de alta rentabilidad usando videos falsos de empresarios locales.",
-                mitigation: "Verificar siempre los registros regulatorios de las entidades financieras en el sitio oficial de la CNV. Desconfiar sistemáticamente de promesas de rentabilidad garantizada."
+                mitigation: "Verificar siempre los registros regulatorios de las entidades financieras en el sitio oficial de la CNV. Desconfiar sistemáticamente de promesas de rentabilidad garantizada.",
+                sourceUrl: "https://www.lanacion.com.ar/tecnologia/alerta-por-una-estafa-con-criptomonedas-que-utiliza-videos-creados-con-inteligencia-artificial-nid28032024/"
             }
         };
 
@@ -1154,6 +1167,16 @@
                 li.innerText = ioc;
                 modalIocsList.appendChild(li);
             });
+
+            // Actualizar Enlace de Respaldo
+            const linkContainer = document.getElementById('modalLinkContainer');
+            const modalLink = document.getElementById('modalLink');
+            if (data.sourceUrl) {
+                linkContainer.classList.remove('hidden');
+                modalLink.href = data.sourceUrl;
+            } else {
+                linkContainer.classList.add('hidden');
+            }
 
             // Actualizar icono en el contenedor
             modalIconContainer.innerHTML = `<i data-lucide="${data.icon}" class="w-6 h-6"></i>`;
